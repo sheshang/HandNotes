@@ -1,0 +1,41 @@
+ * During the business requirements passed from clients to product owners to developers and testers and back to clients, information and requirements get distorted. BDD (Behaviour Driven Development) is a way to document it in a better way which more concrete and common language. Using this BDD documentation to write automated test cases is a side usage of this BDD.
+
+* Gherkin is a language for BDD specifications and Cucumber is a framework to write automated acceptance tests in BDD by writing executable statements for those specifications.
+
+* Business specifications and its acceptance tests should be written before / during the development. These tests also help as functional documentation of features after the development.
+
+* Gherkin: business readable notations for executable specifications. Cucumber is automation library, that takes Gherkin docs and changes to the languages like Java, Ruby
+* Gherkin keywords: Feature, Scenario, Given, When, Then, And, But
+
+* Business conversations/scenarios are noted down into example mappings and feature mappings, with tables listing the business rules. Which in turn helps to create acceptance tests (before writing code).
+* Features would have multiple scenarios. one or more scenarios are handled by individual user story.
+* Features can be arranged in flat or hierarchical org in project
+* Feature file has a feature, feature description and scenarios.
+* Shared steps [ in different scenarios ] can be written in background section [ like @before in Junit ]
+* When there are multiple entries to be checked in Gherkin statement, to keep it flexible we can use embedded data tables, that can be of two types, classic tables: having headers; and mappings: without headers
+* Scenario outlines: When we have multiple scenarios checking the same thing with multiple value-combinations for variables, we can use scenario outline with placeholders and examples table listing various value combinations. So this scenario would run the test case multiple times once for each row.
+
+* Executable specifications are written in Gherkin, while step definitions are written in Glue code (i.e. Programming language like Java)
+* Glue code should only create a test domain layer, which makes calls through existing (web driver, API, DB), not create the new one.
+* Test runner class: finds feature classes and glue code. We can configure the test runner class to run one feature file or multiple feature files.
+
+* Cucumber Expressions: To make the scenarios flexible for glue code, we can have int, word, string, float etc parameters with { } in glue code and various scenarios with different arguments matching the data type. Empty {} makes the anonymous matcher in the argument and it takes any type of data.
+* Regular expressions in Cucumber: harder to read than cucumber expressions, came in existence before cucumber expressions, and not all IDEs support cucumber expressions.
+
+* Tables are converted to list in cucumber to glue code. They need not require regEx in expressions, but only need to provide parameter in code definition.
+* Scenario and scenario outlines can be checked with the same glue code, not special differences are there.
+
+* If we add cucumber BDD plugins in IntelliJ, we can have hovering facility on feature lines to map step definitions to it.
+* If we have feature file without mapped step definitions, and if we run the test runner, an error comes saying These step definitions are missing, just copy them in step definitions file and modify accordingly to our need. (A hack)
+* Drive your design from step definitions. Use user-defined data structures, classes etc in step definitions and then create them in relative folders and define methods etc.
+* This methods can have hardcoded values to use, or it can even call the DB and APIs, to use in definitions for always testing with live values.
+
+* Generating living documentation: Have proper feature and scenario name, scenario outline, table description and more. Living documentation can be created with serenity BDD.
+* Good documentation comes with business specifications (not test scripts). It uses business language (not technical language, no keywords like button or drop-down menu).
+* To generate living documentation we need to add Serenity-BDD dependencies, change in test runner class and then run the test runner.
+* This creates index.html in target/site folder. This is an acceptance test report (in test results tab) / living documentation (in requirements tab)
+
+
+Open Questions:
+
+* Learn what is acceptance testing? Is it about writing integration testing/end to end testing?
